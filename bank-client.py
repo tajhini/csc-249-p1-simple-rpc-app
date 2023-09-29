@@ -14,7 +14,7 @@ def run_bank_client():
         sys.exit()
 
     # Creates a socket object
-    print(f"Client is starting - connectiong to server at IP", {host}, "and port", {port})
+    print(f"Client is starting - connectiong to server at IP, {host}, and port, {port}")
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_sock:
 

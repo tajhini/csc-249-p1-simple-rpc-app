@@ -76,7 +76,7 @@ def run_bank_server():
         sys.exit()
         
     # Creates a socket
-    print(f"Server is starting - listening for connections at IP", {host}, "and port", {port})
+    print(f"Server is starting - listening for connections at IP, {host}, and port, {port}")
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as serv_sock:
 
