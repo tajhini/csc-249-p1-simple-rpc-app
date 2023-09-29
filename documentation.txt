@@ -1,0 +1,69 @@
+Accceptable Messages
+"Close" - This can be typed into the client terminal to close the server and client.
+"Deposit 000" - This can be typed into the client terminal to deposit money.
+"Withdraw 000" - This can be typed into the client terminal to withdraw money.
+
+
+Server - 
+It contains function to decode the request into a form that can be analyesed by the deposit and withdraw functions.
+    analyse_request(request)
+    It does this by splitting the string into a list. TO ensure that the request is a valid one,
+    it checks that the length of the list is two and that the first object is "Deposit" or "Withdraw" and the last 
+    object is a number. It returns a message if it is not in the correct form.
+
+
+It contains a deposit(money) function that accepts a number and adds it to the account balance and returns the current balance.
+It contains a withdraw(money) function that accepts a number and subtracts it from the account balance and returns the current balance.
+It contains a function that runs the whole function.
+    -run_bank_server()
+    This function declares the host and port. 
+    It then creates a socket and binds the host and port to the socket.
+    It listens for a client connection.
+    When it finds one, it sends instructions on how the server works.
+    It then listens for requests from the client. If the client enters "Close" as a request from the client,
+    the server closes and so does the client.
+
+Client 
+It contains one function. The run_bank_client() function.
+    - It declares the host and port. Makes a socket. Binds the socket to the host and port.
+    - It then accepts the instructions from the server. After that, the user is able to use the client
+    to send requests to the server. If the client sends "Close" the server and client closes.
+Server Trace
+PS C:\Users\user\OneDrive\Documents\Year 2\Fall 2023\CSC 249 Computer Networks\csc-249-p1-simple-rpc-app> & C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe "c:/Users/user/OneDrive/Documents/Year 2/Fall 2023/CSC 249 Computer Networks/csc-249-p1-simple-rpc-app/bank-server.py"
+Server is starting - listening for connections at IP {'131.229.143.127'} and port {65432}     
+Listening on 131.229.143.127:65432
+Accepted connection from <socket.socket fd=400, family=2, type=1, proto=0, laddr=('131.229.143.127', 65432), raddr=('131.229.143.127', 55091)> at ('131.229.143.127', 55091).
+Received your request to: Deposit 400
+Response has been sent. Waiting...
+Received your request to: Withdraw 100
+Response has been sent. Waiting...
+Connection to client has been closed.
+PS C:\Users\user\OneDrive\Documents\Year 2\Fall 2023\CSC 249 Computer Networks\csc-249-p1-simple-rpc-app> 
+
+
+Client Trace
+PS C:\Users\user\OneDrive\Documents\Year 2\Fall 2023\CSC 249 Computer Networks\csc-249-p1-simple-rpc-app> & C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe "c:/Users/user/OneDrive/Documents/Year 2/Fall 2023/CSC 249 Computer Networks/csc-249-p1-simple-rpc-app/bank-client.py"
+Client is starting - connectiong to server at IP {'131.229.143.127'} and port {65432}
+Connected to the server.
+This server depsoits and withdraws money. 
+To do that, enter 'Deposit [amount]' or 'Withdraw [amount]'. 
+Enter 'Close' to close sever. 
+
+Enter request: Deposit 400
+Sending request...
+Received: Your new balance is $1400.
+Enter request: Withdraw 100
+Sending request...
+Received: Your new balance is $1300.
+Enter request: Close
+Sending request...
+Connection to server closed.
+PS C:\Users\user\OneDrive\Documents\Year 2\Fall 2023\CSC 249 Computer Networks\csc-249-p1-simple-rpc-app> 
+
+
+Sources: 
+https://www.datacamp.com/tutorial/a-complete-guide-to-socket-programming-in-python
+https://realpython.com/python-sockets/
+https://www.youtube.com/watch?v=7gek0eCnbHs
+https://pythonprogramminglanguage.com/socket-client/
+
